@@ -79,24 +79,35 @@ public class TC_RF_002 {
             // Search for unread emails
             Message[] messages = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
 
-            if (messages != null && messages.length > 0) {
-                boolean found = false;
-                for (int i = messages.length - 1; i >= 0; i--) {
-                    Message message = messages[i];
-                    if (message != null && message.getSubject() != null 
-                            && message.getSubject().contains(expectedSubject)) {
-                        found = true;
-                        System.out.println("Email Found: " + message.getSubject());
-                        break;
+
+            boolean found = false;
+            for(int i = messages.length - 1; i >= 0; i--) {
+            	
+            	Message message = messages[i];
+            
+                if (message.getSubject().contains(expectedSubject)) {
+                    found = true;
+                    Assert.assertEquals(message.getSubject(),expectedSubject);
+                    Assert.assertEquals(message.getFrom()[0].toString(), expectedFromEmail);
+                    String actualEmailBody = getTextFromMessage(message);
+                    Assert.assertTrue(actualEmailBody.contains(expectedBodyContent));
+                    
+                    String[] ar = actualEmailBody.split("600\">");
+                    String linkPart = ar[1];
+                    String[] arr = linkPart.split("</a>");
+     
+                    link = arr[0].trim();
+                    
+                    break;
                     }
                 }
                 if (!found) {
                     System.out.println("No matching email found.");
                 }
-            } else {
+             else {
                 System.out.println("No unread messages found in inbox.");
             }
-            boolean found = false;
+            
 			if (!found) {
                 System.out.println("No confirmation email found.");
             }

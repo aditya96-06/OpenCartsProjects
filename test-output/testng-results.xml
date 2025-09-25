@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-16T19:22:43 IST" name="Default suite" finished-at="2025-09-16T19:22:52 IST" duration-ms="8761">
+  <suite started-at="2025-09-26T02:17:00 IST" name="Default suite" finished-at="2025-09-26T02:17:09 IST" duration-ms="8988">
     <groups>
     </groups>
-    <test started-at="2025-09-16T19:22:43 IST" name="Default test" finished-at="2025-09-16T19:22:52 IST" duration-ms="8761">
+    <test started-at="2025-09-26T02:17:00 IST" name="Default test" finished-at="2025-09-26T02:17:09 IST" duration-ms="8988">
       <class name="tutorialsninja.register.TC_RF_005">
-        <test-method signature="verifyRegisteringAccountBySubscribingToNewsletter()[pri:0, instance:tutorialsninja.register.TC_RF_005@5b12b668]" started-at="2025-09-16T19:22:43 IST" name="verifyRegisteringAccountBySubscribingToNewsletter" finished-at="2025-09-16T19:22:52 IST" duration-ms="8664" status="PASS">
+        <test-method signature="verifyRegisteringAccountBySubscribingToNewsletter()[pri:0, instance:tutorialsninja.register.TC_RF_005@3b69e7d1]" started-at="2025-09-26T02:17:00 IST" name="verifyRegisteringAccountBySubscribingToNewsletter" finished-at="2025-09-26T02:17:09 IST" duration-ms="8901" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyRegisteringAccountBySubscribingToNewsletter -->

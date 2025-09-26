@@ -9,15 +9,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TC_RF_006 {
+public class TC_RF_008 {
 	
 	@Test
-	public void verifyRegisteringAccountBySayingNoToNewsletter() {
+	public void verifyAccountByProvidingMismatchPasswords() {
 		
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-		driver.get("https://tutorialsninja.com/demo/");
+		driver.get("https://tutorialsninja.com/demo");
 		
 		driver.findElement(By.xpath("//span[text()='My Account']")).click();
 		driver.findElement(By.linkText("Register")).click();
@@ -27,19 +27,17 @@ public class TC_RF_006 {
 		driver.findElement(By.id("input-email")).sendKeys(generateBrandNewEmail());
 		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
 		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
-		driver.findElement(By.xpath("//input[@name='newsletter'][@value='0']")).click();
+		driver.findElement(By.id("input-confirm")).sendKeys("abcde");
+		driver.findElement(By.cssSelector("input[value='1'][name='newsletter']")).click();
 		driver.findElement(By.name("agree")).click();
-		
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
-		driver.findElement(By.linkText("Continue")).click();
-		driver.findElement(By.linkText("Subscribe / unsubscribe to newsletter")).click();
 		
-		Assert.assertTrue(driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Newsletter']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@name='newsletter'][@value='0']")).isSelected());
+		//String expectedWarningMessage = "Password confirmation does not match password!";
+		//Assert.assertEquals(driver.findElement(By.xpath("//input[@id='input-confirm']/following-sibling::div")).getText(), expectedWarningMessage);
+		//We can confirm like this as well no need to add String statement in it.
+		Assert.assertTrue(driver.findElement(By.xpath("//input[@id='input-confirm']/following-sibling::div")).isDisplayed());
 		
-		driver.quit();
-		
+		//driver.quit();
 	}
 	public static String generateBrandNewEmail()
 	{
@@ -51,6 +49,5 @@ public class TC_RF_006 {
 		System.out.println(emailWithTimeStamp);
 		return emailWithTimeStamp;
 	}
-		
 
-	}
+}

@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
+import utils.CommonUtils;
 
 public class TC_RF_010 {
 	
@@ -30,7 +31,7 @@ public class TC_RF_010 {
 		
 		driver.findElement(By.xpath("//span[text()='My Account']")).click();
 		driver.findElement(By.linkText("Register")).click();
-		
+		//First test data
 		driver.findElement(By.id("input-firstname")).sendKeys("Aditya");
 		driver.findElement(By.id("input-lastname")).sendKeys("Kulkarni");
 		driver.findElement(By.id("input-email")).sendKeys("akulkarni");
@@ -46,8 +47,54 @@ public class TC_RF_010 {
 		File srcScreenshot1 = driver.findElement(By.xpath("//form[@class='form-horizontal']")).getScreenshotAs(OutputType.FILE);
 		FileHandler.copy(srcScreenshot1, new File(System.getProperty("user.dir")+"\\Screenshots\\sc1Actual.png"));
 		
-		BufferedImage actualBImg = ImageIO.read(new File(System.getProperty("user.dir")+"\\Screenshots\\sc1Actual.png"));
-		BufferedImage expectedImg = ImageIO.read(new File(System.getProperty("user.dir")+"\\Screenshots\\sc1Expected.png"));
+		Thread.sleep(3000);
+		
+		Assert.assertFalse(compareTwoScreenshots(System.getProperty("user.dir")+"\\Screenshots\\sc1Actual.png",System.getProperty("user.dir")+"\\Screenshots\\sc1Expected.png"));
+		
+		//Second Test data
+		driver.findElement(By.id("input-email")).clear();
+		driver.findElement(By.id("input-email")).sendKeys("akulkarni@");
+		driver.findElement(By.xpath("//input[@value='Continue']")).click();
+		
+		Thread.sleep(2000);
+		
+		File srcScreenshot2 = driver.findElement(By.xpath("//form[@class='form-horizontal']")).getScreenshotAs(OutputType.FILE);
+		FileHandler.copy(srcScreenshot2, new File(System.getProperty("user.dir")+"\\Screenshots\\sc2Actual.png"));
+		
+		Thread.sleep(2000);
+		
+		Assert.assertFalse(compareTwoScreenshots(System.getProperty("user.dir")+"\\Screenshots\\sc2Actual.png",System.getProperty("user.dir")+"\\Screenshots\\sc2Expected.png"));
+		
+		//Third Test data
+		driver.findElement(By.id("input-email")).clear();
+		driver.findElement(By.id("input-email")).sendKeys("akulkarni@gmail");
+		driver.findElement(By.xpath("//input[@value='Continue']")).click();
+		
+		Thread.sleep(2000);
+		
+		String expectedWarningMessage = "E-Mail Address does not appear to be valid!";
+		Thread.sleep(2000);
+		Assert.assertEquals(driver.findElement(By.xpath("//input[@id='input-email']/following-sibling::div")).getText(), expectedWarningMessage);
+		
+		//Fourth Test Data
+		driver.findElement(By.id("input-email")).clear();
+		driver.findElement(By.id("input-email")).sendKeys("akulkarni@gmail.");
+		driver.findElement(By.xpath("//input[@value='Continue']")).click();
+		
+		Thread.sleep(3000);
+		
+		File srcScreenshot3 = driver.findElement(By.xpath("//form[@class='form-horizontal']")).getScreenshotAs(OutputType.FILE);
+		FileHandler.copy(srcScreenshot3, new File(System.getProperty("user.dir")+"\\Screenshots\\sc3Expected.png"));
+		
+		Thread.sleep(3000);
+		
+		//Assert.assertFalse(CommonUtils.compareTwoScreenshots(System.getProperty("user.dir")+"\\Screenshots\\sc3Actual.png",System.getProperty("user.dir")+"\\Screenshots\\sc3Expected.png"));
+		
+		driver.quit();
+	}
+	public boolean compareTwoScreenshots(String actualImagePath, String expectedImagePath) throws IOException {
+		BufferedImage actualBImg = ImageIO.read(new File(actualImagePath));
+		BufferedImage expectedImg = ImageIO.read(new File(expectedImagePath));
 		
 		ImageDiffer imgDiffer = new ImageDiffer();
 		ImageDiff imgDifference = imgDiffer.makeDiff(expectedImg, actualBImg);
@@ -56,9 +103,8 @@ public class TC_RF_010 {
 		//boolean b= imgDifference.hasDiff();
 		//System.out.println(b);
 		
-		Assert.assertFalse(imgDifference.hasDiff());
+	    return (imgDifference.hasDiff());
 		
-		driver.quit();
 	}
 
 }

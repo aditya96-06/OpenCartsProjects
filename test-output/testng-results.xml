@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-26T17:59:16 IST" name="Default suite" finished-at="2025-09-26T17:59:22 IST" duration-ms="5760">
+  <suite started-at="2025-09-29T20:09:16 IST" name="Default suite" finished-at="2025-09-29T20:09:28 IST" duration-ms="11461">
     <groups>
     </groups>
-    <test started-at="2025-09-26T17:59:16 IST" name="Default test" finished-at="2025-09-26T17:59:22 IST" duration-ms="5760">
-      <class name="tutorialsninja.register.TC_RF_009">
-        <test-method signature="verifyRegistringAccountUsingExistingEmail()[pri:0, instance:tutorialsninja.register.TC_RF_009@40a4337a]" started-at="2025-09-26T17:59:16 IST" name="verifyRegistringAccountUsingExistingEmail" finished-at="2025-09-26T17:59:22 IST" duration-ms="5684" status="PASS">
+    <test started-at="2025-09-29T20:09:16 IST" name="Default test" finished-at="2025-09-29T20:09:28 IST" duration-ms="11461">
+      <class name="tutorialsninja.register.TC_RF_010">
+        <test-method signature="verifyRegisteringAccountUsingInvalidEmail()[pri:0, instance:tutorialsninja.register.TC_RF_010@7e6f74c]" started-at="2025-09-29T20:09:16 IST" name="verifyRegisteringAccountUsingInvalidEmail" finished-at="2025-09-29T20:09:28 IST" duration-ms="11364" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyRegistringAccountUsingExistingEmail -->
-      </class> <!-- tutorialsninja.register.TC_RF_009 -->
+        </test-method> <!-- verifyRegisteringAccountUsingInvalidEmail -->
+      </class> <!-- tutorialsninja.register.TC_RF_010 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
